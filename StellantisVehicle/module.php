@@ -104,8 +104,8 @@ class StellantisVehicle extends IPSModule
         $request = [
             'DataID' => self::DATA_TO_ACCOUNT,
             'Buffer' => json_encode([
-                'Function' => 'RefreshVehicle',
-                'VIN' => $this->ReadPropertyString('VIN'),
+                'Function'  => 'RefreshVehicle',
+                'VIN'       => $this->ReadPropertyString('VIN'),
                 'VehicleID' => $this->ReadPropertyString('VehicleID')
             ], JSON_THROW_ON_ERROR)
         ];

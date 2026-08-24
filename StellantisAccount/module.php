@@ -72,8 +72,8 @@ class StellantisAccount extends IPSModule
             'elements' => [
                 ['type' => 'CheckBox', 'name' => 'Enabled', 'caption' => 'Aktiv'],
                 [
-                    'type' => 'Select',
-                    'name' => 'Provider',
+                    'type'    => 'Select',
+                    'name'    => 'Provider',
                     'caption' => 'Zugangsart',
                     'options' => [
                         ['caption' => 'MyOpel-Kompatibilitätsmodus', 'value' => 'myopel'],
@@ -293,11 +293,11 @@ class StellantisAccount extends IPSModule
 
         curl_setopt_array($curl, [
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST => $method,
-            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_CUSTOMREQUEST  => $method,
+            CURLOPT_HTTPHEADER     => $headers,
             CURLOPT_CONNECTTIMEOUT => 15,
-            CURLOPT_TIMEOUT => 45,
-            CURLOPT_USERAGENT => 'IP-Symcon Stellantis Vehicles/0.1'
+            CURLOPT_TIMEOUT        => 45,
+            CURLOPT_USERAGENT      => 'IP-Symcon Stellantis Vehicles/0.1'
         ]);
         if ($method === 'POST') {
             curl_setopt($curl, CURLOPT_POSTFIELDS, '');
@@ -383,8 +383,8 @@ class StellantisAccount extends IPSModule
             'DataID' => self::DATA_TO_CHILD,
             'Buffer' => json_encode([
                 'Function' => 'VehicleStatus',
-                'VIN' => $vin,
-                'Status' => $status
+                'VIN'      => $vin,
+                'Status'   => $status
             ], JSON_THROW_ON_ERROR)
         ], JSON_THROW_ON_ERROR));
     }

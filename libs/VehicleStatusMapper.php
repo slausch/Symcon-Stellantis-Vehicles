@@ -28,21 +28,21 @@ final class VehicleStatusMapper
         $updatedTimestamp = self::timestamp($updatedAt);
 
         return [
-            'SOC' => self::number($electric['level'] ?? null),
-            'Range' => self::number($electric['autonomy'] ?? null),
-            'ChargingPlugged' => self::boolean($charging['plugged'] ?? null),
-            'Charging' => ($charging['status'] ?? null) === 'InProgress',
-            'ChargingStatus' => isset($charging['status']) ? (string) $charging['status'] : null,
-            'ChargingMode' => isset($charging['chargingMode']) ? (string) $charging['chargingMode'] : null,
+            'SOC'                      => self::number($electric['level'] ?? null),
+            'Range'                    => self::number($electric['autonomy'] ?? null),
+            'ChargingPlugged'          => self::boolean($charging['plugged'] ?? null),
+            'Charging'                 => ($charging['status'] ?? null) === 'InProgress',
+            'ChargingStatus'           => isset($charging['status']) ? (string) $charging['status'] : null,
+            'ChargingMode'             => isset($charging['chargingMode']) ? (string) $charging['chargingMode'] : null,
             'ChargingRemainingMinutes' => $remaining,
-            'Mileage' => self::number(self::path($status, ['odometer', 'mileage'], null)),
-            'AmbientTemperature' => self::number(self::path($status, ['environment', 'air', 'temp'], null)),
-            'Preconditioning' => ($preconditioning['status'] ?? null) === 'Enabled',
-            'DoorsLocked' => self::doorsLocked($doorsState),
-            'Latitude' => is_array($coordinates) && isset($coordinates[1]) ? self::number($coordinates[1]) : null,
-            'Longitude' => is_array($coordinates) && isset($coordinates[0]) ? self::number($coordinates[0]) : null,
-            'LastDataAt' => $updatedTimestamp,
-            'DataAge' => $updatedTimestamp === null ? null : max(0, time() - $updatedTimestamp)
+            'Mileage'                  => self::number(self::path($status, ['odometer', 'mileage'], null)),
+            'AmbientTemperature'       => self::number(self::path($status, ['environment', 'air', 'temp'], null)),
+            'Preconditioning'          => ($preconditioning['status'] ?? null) === 'Enabled',
+            'DoorsLocked'              => self::doorsLocked($doorsState),
+            'Latitude'                 => is_array($coordinates) && isset($coordinates[1]) ? self::number($coordinates[1]) : null,
+            'Longitude'                => is_array($coordinates) && isset($coordinates[0]) ? self::number($coordinates[0]) : null,
+            'LastDataAt'               => $updatedTimestamp,
+            'DataAge'                  => $updatedTimestamp === null ? null : max(0, time() - $updatedTimestamp)
         ];
     }
 

@@ -55,11 +55,11 @@ final class MyOpelProvider implements StellantisProvider
     public function getAuthorizationUrl(): string
     {
         return self::OAUTH_BASE_URL . '/authorize?' . http_build_query([
-            'client_id' => $this->clientId,
+            'client_id'     => $this->clientId,
             'response_type' => 'code',
-            'redirect_uri' => $this->getRedirectUri(),
-            'scope' => 'openid profile email',
-            'locale' => $this->locale
+            'redirect_uri'  => $this->getRedirectUri(),
+            'scope'         => 'openid profile email',
+            'locale'        => $this->locale
         ], '', '&', PHP_QUERY_RFC3986);
     }
 
@@ -72,7 +72,7 @@ final class MyOpelProvider implements StellantisProvider
     {
         return self::API_BASE_URL . '/connectedcar/v4/user/vehicles?' . http_build_query([
             'client_id' => $this->clientId,
-            'locale' => $this->locale
+            'locale'    => $this->locale
         ], '', '&', PHP_QUERY_RFC3986);
     }
 
@@ -80,7 +80,7 @@ final class MyOpelProvider implements StellantisProvider
     {
         return self::API_BASE_URL . '/connectedcar/v4/user/vehicles/' . rawurlencode($vehicleId) . '/status?' . http_build_query([
             'client_id' => $this->clientId,
-            'locale' => $this->locale
+            'locale'    => $this->locale
         ], '', '&', PHP_QUERY_RFC3986);
     }
 
@@ -97,15 +97,15 @@ final class MyOpelProvider implements StellantisProvider
     {
         return [
             'redirect_uri' => $this->getRedirectUri(),
-            'grant_type' => 'authorization_code',
-            'code' => $code
+            'grant_type'   => 'authorization_code',
+            'code'         => $code
         ];
     }
 
     public function getRefreshTokenParameters(string $refreshToken): array
     {
         return [
-            'grant_type' => 'refresh_token',
+            'grant_type'    => 'refresh_token',
             'refresh_token' => $refreshToken
         ];
     }
