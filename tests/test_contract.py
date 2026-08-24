@@ -33,7 +33,7 @@ class ModuleContractTest(unittest.TestCase):
     def test_account_and_vehicle_data_interfaces_match(self):
         account = json.loads((ROOT / "StellantisAccount" / "module.json").read_text(encoding="utf-8"))
         vehicle = json.loads((ROOT / "StellantisVehicle" / "module.json").read_text(encoding="utf-8"))
-        self.assertEqual(2, account["type"])
+        self.assertEqual(3, account["type"])
         self.assertEqual(3, vehicle["type"])
         self.assertEqual(account["childRequirements"], vehicle["implemented"])
         self.assertEqual(account["implemented"], vehicle["parentRequirements"])

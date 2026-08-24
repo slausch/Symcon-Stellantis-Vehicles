@@ -22,7 +22,9 @@ TLS-MQTT-Kanal für Fernbefehle. Diese folgen nach dem Live-Test von Phase 1.
 ## Einrichtung des Prototyps
 
 1. Bibliothek über das IP-Symcon Module Control laden.
-2. Eine Instanz `Stellantis Account` erstellen.
+2. Über `Instanz hinzufügen` nach `Stellantis Account` suchen und die Instanz
+   erstellen. Sie wird als normale Geräteinstanz angeboten; `Alle Module
+   anzeigen` ist nicht erforderlich.
 3. Land, Statusintervall sowie berechtigte MyOpel Client-ID und Client-Secret
    einstellen und übernehmen.
 4. Unter `Testumgebung` die MyOpel-Anmeldung öffnen.
