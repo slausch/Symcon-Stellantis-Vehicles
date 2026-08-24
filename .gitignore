@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.phpunit.*
+.php-cs-fixer.cache
+
+# Unrelated workspace artifacts; do not publish them with this module.
+/Verteiler_gesamt_*.png
+/debug_rechts_panorama*.png
+/make_faithful_stitch.py
+/stitch_ver2.py
+/stitch-inputs/

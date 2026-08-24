@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Validate PHP syntax
+        run: find StellantisAccount StellantisVehicle libs tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: Validate JSON and status mapping
+        run: php tests/run.php
+      - name: Run module contract tests
+        run: python3 -m unittest tests/test_contract.py
+
+  symcon-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout module
+        uses: actions/checkout@v4
+      - name: Run IP-Symcon module tests
+        uses: symcon/action-tests@master

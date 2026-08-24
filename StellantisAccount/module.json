@@ -1,0 +1,18 @@
+{
+    "id": "{DF16825B-E212-4F22-9648-FC5F1825B504}",
+    "name": "Stellantis Account",
+    "type": 2,
+    "vendor": "Stellantis",
+    "aliases": [
+        "MyOpel Account"
+    ],
+    "parentRequirements": [],
+    "childRequirements": [
+        "{A02073EB-6357-438D-936A-DE8A5B431857}"
+    ],
+    "implemented": [
+        "{AD5040B8-C984-4893-AF89-E4CBB35B9B7F}"
+    ],
+    "prefix": "STLAACC",
+    "url": "https://github.com/slausch/Symcon-Stellantis-Vehicles"
+}

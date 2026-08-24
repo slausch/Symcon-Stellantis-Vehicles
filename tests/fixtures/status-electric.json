@@ -1,0 +1,26 @@
+{
+    "updatedAt": "2026-08-24T18:30:00Z",
+    "odometer": {"mileage": 12345.6},
+    "environment": {"air": {"temp": 7.5}},
+    "doorsState": {"lockedStates": "Locked"},
+    "preconditioning": {"airConditioning": {"status": "Enabled"}},
+    "lastPosition": {"geometry": {"coordinates": [8.6821, 50.1109]}},
+    "energies": [
+        {
+            "type": "Electric",
+            "level": 63,
+            "autonomy": 278,
+            "updatedAt": "2026-08-24T18:30:00Z",
+            "extension": {
+                "electric": {
+                    "charging": {
+                        "plugged": true,
+                        "status": "InProgress",
+                        "chargingMode": "Normal",
+                        "remainingTime": "PT1H30M"
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "id": "{55719996-CD7E-4825-8B64-294601469EB5}",
+    "name": "Stellantis Vehicle",
+    "type": 3,
+    "vendor": "Stellantis",
+    "aliases": [
+        "Opel Electric Vehicle"
+    ],
+    "parentRequirements": [
+        "{AD5040B8-C984-4893-AF89-E4CBB35B9B7F}"
+    ],
+    "childRequirements": [],
+    "implemented": [
+        "{A02073EB-6357-438D-936A-DE8A5B431857}"
+    ],
+    "prefix": "STLAVEH",
+    "url": "https://github.com/slausch/Symcon-Stellantis-Vehicles"
+}
