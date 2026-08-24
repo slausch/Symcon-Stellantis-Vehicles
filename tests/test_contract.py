@@ -61,6 +61,14 @@ class ModuleContractTest(unittest.TestCase):
         self.assertIn("$clientId", provider)
         self.assertIn("$clientSecret", provider)
 
+    def test_symcon_overrides_do_not_narrow_framework_parameters(self):
+        account = ACCOUNT.read_text(encoding="utf-8")
+        vehicle = VEHICLE.read_text(encoding="utf-8")
+        self.assertIn("function ForwardData($jsonString)", account)
+        self.assertIn("function ReceiveData($jsonString)", vehicle)
+        self.assertNotIn("function ForwardData(string $jsonString)", account)
+        self.assertNotIn("function ReceiveData(string $jsonString)", vehicle)
+
     def test_vehicle_exposes_agreed_read_only_values(self):
         source = VEHICLE.read_text(encoding="utf-8")
         for ident in [

@@ -72,7 +72,7 @@ class StellantisVehicle extends IPSModule
         ], JSON_THROW_ON_ERROR);
     }
 
-    public function ReceiveData(string $jsonString): void
+    public function ReceiveData($jsonString): void
     {
         try {
             $data = json_decode($jsonString, true, 512, JSON_THROW_ON_ERROR);

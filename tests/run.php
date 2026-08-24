@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/ips_stubs.php';
 require_once __DIR__ . '/../libs/MyOpelProvider.php';
 require_once __DIR__ . '/../libs/VehicleStatusMapper.php';
+require_once __DIR__ . '/../StellantisAccount/module.php';
+require_once __DIR__ . '/../StellantisVehicle/module.php';
 
 function expect(mixed $actual, mixed $expected, string $label): void
 {
@@ -11,6 +14,9 @@ function expect(mixed $actual, mixed $expected, string $label): void
         throw new RuntimeException(sprintf('%s: expected %s, got %s', $label, var_export($expected, true), var_export($actual, true)));
     }
 }
+
+expect(class_exists('StellantisAccount'), true, 'Account module class loading');
+expect(class_exists('StellantisVehicle'), true, 'Vehicle module class loading');
 
 $code = MyOpelProvider::extractAuthorizationCode('mymopsdk://oauth2redirect/de-de?code=abc123&scope=openid');
 expect($code, 'abc123', 'OAuth redirect parsing');

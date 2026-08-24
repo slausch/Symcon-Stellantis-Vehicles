@@ -195,7 +195,7 @@ class StellantisAccount extends IPSModule
         }
     }
 
-    public function ForwardData(string $jsonString): string
+    public function ForwardData($jsonString): string
     {
         try {
             $data = json_decode($jsonString, true, 512, JSON_THROW_ON_ERROR);
