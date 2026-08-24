@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/ips_stubs.php';
+require_once __DIR__ . '/stubs/autoload.php';
 require_once __DIR__ . '/../libs/MyOpelProvider.php';
 require_once __DIR__ . '/../libs/VehicleStatusMapper.php';
-require_once __DIR__ . '/../StellantisAccount/module.php';
-require_once __DIR__ . '/../StellantisVehicle/module.php';
 
 function expect(mixed $actual, mixed $expected, string $label): void
 {
@@ -15,8 +13,16 @@ function expect(mixed $actual, mixed $expected, string $label): void
     }
 }
 
-expect(class_exists('StellantisAccount'), true, 'Account module class loading');
-expect(class_exists('StellantisVehicle'), true, 'Vehicle module class loading');
+IPS\ModuleLoader::loadSingleModule(
+    __DIR__ . '/../StellantisAccount',
+    '{E4053D3C-5E32-417E-A8CF-2C8831C1D7C9}'
+);
+IPS\ModuleLoader::loadSingleModule(
+    __DIR__ . '/../StellantisVehicle',
+    '{E4053D3C-5E32-417E-A8CF-2C8831C1D7C9}'
+);
+expect(IPS_ModuleExists('{DF16825B-E212-4F22-9648-FC5F1825B504}'), true, 'Account module registration');
+expect(IPS_ModuleExists('{55719996-CD7E-4825-8B64-294601469EB5}'), true, 'Vehicle module registration');
 
 $code = MyOpelProvider::extractAuthorizationCode('mymopsdk://oauth2redirect/de-de?code=abc123&scope=openid');
 expect($code, 'abc123', 'OAuth redirect parsing');

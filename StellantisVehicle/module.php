@@ -131,7 +131,7 @@ class StellantisVehicle extends IPSModule
         $values = VehicleStatusMapper::map($status);
         foreach ($values as $ident => $value) {
             if ($value !== null && @$this->GetIDForIdent($ident) > 0) {
-                $this->setValue($ident, $value);
+                $this->updateVariableValue($ident, $value);
             }
         }
 
@@ -139,7 +139,7 @@ class StellantisVehicle extends IPSModule
             if (@$this->GetIDForIdent('RawStatus') === false) {
                 $this->RegisterVariableString('RawStatus', 'Rohdaten', $this->readOnlyPresentation(), 1000);
             }
-            $this->setValue('RawStatus', json_encode($status, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $this->updateVariableValue('RawStatus', json_encode($status, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
         }
         $this->SetStatus(102);
     }
@@ -169,7 +169,7 @@ class StellantisVehicle extends IPSModule
         return $presentation;
     }
 
-    private function setValue(string $ident, mixed $value): void
+    private function updateVariableValue(string $ident, mixed $value): void
     {
         $variableId = $this->GetIDForIdent($ident);
         if (GetValue($variableId) !== $value) {

@@ -2,8 +2,13 @@
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
          cacheDirectory=".phpunit.cache">
+  <php>
+    <const name="PHPUNIT_TESTSUITE" value="true"/>
+  </php>
   <source>
     <include>
+      <directory suffix=".php">../StellantisAccount</directory>
+      <directory suffix=".php">../StellantisVehicle</directory>
       <directory suffix=".php">../libs</directory>
     </include>
   </source>

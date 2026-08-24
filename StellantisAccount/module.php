@@ -146,7 +146,7 @@ class StellantisAccount extends IPSModule
         $this->WriteAttributeInteger('OAuthExpiresAt', 0);
         $this->WriteAttributeString('Vehicles', '[]');
         $this->SetTimerInterval('Poll', 0);
-        $this->setValue('Connected', false);
+        $this->updateVariableValue('Connected', false);
         $this->SetStatus(200);
     }
 
@@ -183,13 +183,13 @@ class StellantisAccount extends IPSModule
                 ++$updated;
             }
 
-            $this->setValue('Connected', true);
-            $this->setValue('LastSuccessfulUpdate', time());
+            $this->updateVariableValue('Connected', true);
+            $this->updateVariableValue('LastSuccessfulUpdate', time());
             $this->clearError();
             $this->SetStatus(102);
             return sprintf('%d Fahrzeug(e) gefunden, %d Statusdatensätze aktualisiert.', count($vehicles), $updated);
         } catch (Throwable $exception) {
-            $this->setValue('Connected', false);
+            $this->updateVariableValue('Connected', false);
             $this->setError($exception->getMessage(), 202);
             return 'Aktualisierung fehlgeschlagen: ' . $exception->getMessage();
         }
@@ -410,17 +410,17 @@ class StellantisAccount extends IPSModule
     private function setError(string $message, int $status): void
     {
         $safeMessage = substr($message, 0, 500);
-        $this->setValue('LastError', $safeMessage);
+        $this->updateVariableValue('LastError', $safeMessage);
         $this->SendDebug('Error', $safeMessage, 0);
         $this->SetStatus($status);
     }
 
     private function clearError(): void
     {
-        $this->setValue('LastError', '');
+        $this->updateVariableValue('LastError', '');
     }
 
-    private function setValue(string $ident, mixed $value): void
+    private function updateVariableValue(string $ident, mixed $value): void
     {
         $variableId = $this->GetIDForIdent($ident);
         if (GetValue($variableId) !== $value) {

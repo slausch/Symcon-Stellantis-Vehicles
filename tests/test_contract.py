@@ -69,6 +69,12 @@ class ModuleContractTest(unittest.TestCase):
         self.assertNotIn("function ForwardData(string $jsonString)", account)
         self.assertNotIn("function ReceiveData(string $jsonString)", vehicle)
 
+    def test_helpers_do_not_collide_with_ipsmodule_set_value(self):
+        for source in [ACCOUNT, VEHICLE]:
+            text = source.read_text(encoding="utf-8")
+            self.assertNotRegex(text, r"private function setValue\s*\(")
+            self.assertIn("updateVariableValue", text)
+
     def test_vehicle_exposes_agreed_read_only_values(self):
         source = VEHICLE.read_text(encoding="utf-8")
         for ident in [
